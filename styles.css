@@ -4,7 +4,42 @@
   box-sizing: border-box;
 }
 
+button {
+  font-size: inherit;
+}
+
 body {
-  height: 100vh;
+  min-height: 100vh;
   background: #ffeacb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+main {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-top: 10px;
+  width: 70%;
+}
+
+.library {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  flex: 1;
+  color: white;
+  gap: 10px;
+  background-color: rgb(255, 60, 0);
+  padding: 10px;
+}
+
+.book {
+  background-color: brown;
+  border-radius: 2px;
+  padding: 2px;
+  border: 1px solid black;
+  min-height: 200px;
+  overflow-wrap: break-word;
 }
