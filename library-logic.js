@@ -1,7 +1,52 @@
 const myLibrary = [];
 const libraryNode = document.querySelector('.library');
 
+// New Book dialog related nodes
+const newBookDialog = document.querySelector('#new-book-dialog');
+const newBookForm = document.querySelector('#new-book-form');
+const title = document.querySelector('#book_title');
+const author = document.querySelector('#author');
+const pages = document.querySelector('#pages');
+const read = document.querySelector('#read');
+
+
+newBookForm.addEventListener('submit', (e) => {
+  const btnValue = e.submitter.value;
+  if (btnValue === 'cancel') { // if clicked cancel button
+    newBookForm.reset(); // clear form
+    return;
+  }
+  e.preventDefault(); // We don't want to submit this form since we don't have a server
+
+  const trimmedTitle = title.value.trim();
+  const trimmedAuthor = author.value.trim();
+  if (trimmedTitle === '' || trimmedAuthor === '') {
+    alert('Please enter valid input');
+    return;
+  }
+
+  // Check if book already exists
+  for (const book of myLibrary) {
+    if (
+      book.title.toLowerCase() === trimmedTitle.toLowerCase() &&
+      book.author.toLowerCase() === trimmedAuthor.toLowerCase()
+    ) {
+      alert('Book already exists in library');
+      return; // returns from for loop not function
+    }
+  }
+
+  // Add book to library and display the recently added book on page
+  addBookToLibrary(trimmedTitle, trimmedAuthor, pages.value, read.checked);  // we should use read.checked to return boolean value
+  displayBook(myLibrary[myLibrary.length - 1]);
+
+  newBookForm.reset();
+  newBookDialog.close();
+});
+
+
 function Book(title, author, pages, read) {
+  // TODO: Prevent use of constructor without new keyword
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -30,6 +75,14 @@ function displayBooks() {
     bookNode.innerHTML = book.info();
     libraryNode.appendChild(bookNode);
   }
+}
+
+function displayBook(book) {
+  const bookNode = document.createElement('div');
+  bookNode.classList.add('book'); // add book class to our node
+
+  bookNode.innerHTML = book.info();
+  libraryNode.appendChild(bookNode);
 }
 
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, true);
