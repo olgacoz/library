@@ -87,6 +87,7 @@ function displayBook(book) {
   bookNode.innerHTML = book.info();
   libraryNode.appendChild(bookNode);
 }
+// TODO: For delete confirmation look up window.prompt()
 
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, true);
 addBookToLibrary("1984", "George Orwell", 328, false);
