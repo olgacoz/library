@@ -43,3 +43,9 @@ main {
   min-height: 200px;
   overflow-wrap: break-word;
 }
+
+dialog {
+  padding: 15px;
+  margin-top: 10%;
+  margin-left: 10px;
+}
