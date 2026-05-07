@@ -127,7 +127,15 @@ function displayBooks() {
     deleteButton.classList.add('delete-button');
     deleteButton.textContent = 'delete';
 
-    bookNode.append(title, author, pages, readButton, deleteButton);
+    const bookInfo = document.createElement('div');
+    bookInfo.classList.add('book-info');
+    bookInfo.append(title, author, pages);
+
+    const buttons = document.createElement('div');
+    buttons.classList.add('book-control-buttons');
+    buttons.append(readButton, deleteButton);
+
+    bookNode.append(bookInfo, buttons);
     libraryNode.append(bookNode);
   }
 }
@@ -158,7 +166,15 @@ function displayBook(book) {
   deleteButton.classList.add('delete-button');
   deleteButton.textContent = 'delete';
 
-  bookNode.append(title, author, pages, readButton, deleteButton);
+  const bookInfo = document.createElement('div');
+  bookInfo.classList.add('book-info');
+  bookInfo.append(title, author, pages);
+
+  const buttons = document.createElement('div');
+  buttons.classList.add('book-control-buttons');
+  buttons.append(readButton, deleteButton);
+
+  bookNode.append(bookInfo, buttons);
   libraryNode.append(bookNode);
 }
 
