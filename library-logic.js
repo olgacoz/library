@@ -44,6 +44,19 @@ newBookForm.addEventListener('submit', (e) => {
   newBookDialog.close();
 });
 
+libraryNode.addEventListener('click', (e) => {
+  targetClassList = e.target.classList;
+
+  if (targetClassList.contains('delete-button')) { // delete button clicked
+    const confirmed = window.confirm('Do you want to remove this book?');
+
+    if (confirmed) {
+      const bookNode = e.target.closest('.book'); // get the book node that we want to delete
+      const uuid = bookNode.dataset.uuid;
+      removeBook(bookNode, uuid);
+    }
+  }
+});
 
 function Book(title, author, pages, read) {
   if (!new.target) {
@@ -127,7 +140,15 @@ function displayBook(book) {
   bookNode.append(title, author, pages, readButton, deleteButton);
   libraryNode.append(bookNode);
 }
-// TODO: For delete confirmation look up window.prompt()
+
+function removeBook(bookNode, uuid) {
+  for (let i = 0; i < myLibrary.length; i++) {
+    if (myLibrary[i].uuid === uuid) {
+      myLibrary.splice(i, 1); // remove book from array
+      bookNode.remove(); // remove book node from DOM
+    }
+  }
+}
 
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, true);
 addBookToLibrary("1984", "George Orwell", 328, false);
