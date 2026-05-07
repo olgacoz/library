@@ -167,7 +167,7 @@ function removeBook(bookNode, uuid) {
     if (myLibrary[i].uuid === uuid) {
       myLibrary.splice(i, 1); // remove book from array
       bookNode.remove(); // remove book node from DOM
-      // TODO: when we found the book to be removed, don't continue to search for it. Break out of loop.
+      return;
     }
   }
 }
