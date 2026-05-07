@@ -195,7 +195,7 @@ addBookToLibrary("Atomic Habits", "James Clear", 320, true);
 addBookToLibrary("The Pragmatic Programmer", "Andrew Hunt", 352, false);
 addBookToLibrary("Clean Code", "Robert C. Martin", 464, true);
 addBookToLibrary("Eloquent JavaScript", "Marijn Haverbeke", 472, true);
-addBookToLibrary("Kürk Mantolu Madonna", "Sabahattin Ali", 160, true);
-addBookToLibrary("Tutunamayanlar", "Oguz Atay", 724, false);
+addBookToLibrary("Kürk Mantolu Madonna", "Sabahattin Ali", 160, false);
+addBookToLibrary("Abasıyanık", "Sait Faik", 136, true);
 
 displayBooks();
