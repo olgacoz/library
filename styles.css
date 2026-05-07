@@ -47,6 +47,7 @@ main {
   background-color: rgb(255, 60, 0);
   border: 10px solid rgb(204, 70, 29);
   padding: 10px;
+  min-height: 290px;
 }
 
 .book {
