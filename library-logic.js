@@ -9,7 +9,6 @@ const author = document.querySelector('#author');
 const pages = document.querySelector('#pages');
 const read = document.querySelector('#read');
 
-
 newBookForm.addEventListener('submit', (e) => {
   const btnValue = e.submitter.value;
   if (btnValue === 'cancel') { // if clicked cancel button
@@ -55,6 +54,24 @@ libraryNode.addEventListener('click', (e) => {
       const uuid = bookNode.dataset.uuid;
       removeBook(bookNode, uuid);
     }
+  } else if (targetClassList.contains('read') || targetClassList.contains('unread')) {
+    const bookNode = e.target.closest('.book');
+    const uuid = bookNode.dataset.uuid;
+
+    for (const book of myLibrary) {
+      if (book.uuid === uuid) {
+        book.toggleReadStatus();
+
+        if (book.read) {
+          targetClassList.replace('unread', 'read');
+          e.target.textContent = 'read';
+        } else {
+          targetClassList.replace('read', 'unread');
+          e.target.textContent = 'unread';
+        }
+        break;
+      }
+    }
   }
 });
 
@@ -72,6 +89,10 @@ function Book(title, author, pages, read) {
 
 Book.prototype.info = function () {
   return `${this.title} by ${this.author}, ${this.pages} pages, ${read}`;
+}
+
+Book.prototype.toggleReadStatus = function () {
+  this.read = !this.read;
 }
 
 function addBookToLibrary(title, author, pages, read) {
@@ -146,6 +167,7 @@ function removeBook(bookNode, uuid) {
     if (myLibrary[i].uuid === uuid) {
       myLibrary.splice(i, 1); // remove book from array
       bookNode.remove(); // remove book node from DOM
+      // TODO: when we found the book to be removed, don't continue to search for it. Break out of loop.
     }
   }
 }
