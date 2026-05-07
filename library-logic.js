@@ -47,9 +47,9 @@ newBookForm.addEventListener('submit', (e) => {
 
 function Book(title, author, pages, read) {
   if (!new.target) {
-    throw Error("You must use the 'new' operator to call the constructor"); 
+    throw Error("You must use the 'new' operator to call the constructor");
   }
-  
+
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -58,11 +58,7 @@ function Book(title, author, pages, read) {
 }
 
 Book.prototype.info = function () {
-  const read = this.read ? 'read' : 'unread';
-  return `<h2 class="book-title">${this.title}</h2>
-         <div class="author">by ${this.author}</div>
-         <div class="pages">${this.pages} pages</div>
-         <button class=${read}>${read}</button>`;
+  return `${this.title} by ${this.author}, ${this.pages} pages, ${read}`;
 }
 
 function addBookToLibrary(title, author, pages, read) {
@@ -74,18 +70,62 @@ function displayBooks() {
   for (const book of myLibrary) {
     const bookNode = document.createElement('div');
     bookNode.classList.add('book'); // add book class to our node
+    bookNode.setAttribute('data-uuid', book.uuid); // add uuid on our node
 
-    bookNode.innerHTML = book.info();
-    libraryNode.appendChild(bookNode);
+    const title = document.createElement('h2');
+    title.classList.add('book-title');
+    title.textContent = book.title;
+
+    const author = document.createElement('div');
+    author.classList.add('author');
+    author.textContent = `by ${book.author}`;
+
+    const pages = document.createElement('div');
+    pages.classList.add('pages');
+    pages.textContent = `${book.pages} pages`;
+
+    const read = book.read ? 'read' : 'unread';
+    const readButton = document.createElement('button');
+    readButton.classList.add(read);
+    readButton.textContent = read;
+
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add('delete-button');
+    deleteButton.textContent = 'delete';
+
+    bookNode.append(title, author, pages, readButton, deleteButton);
+    libraryNode.append(bookNode);
   }
 }
 
 function displayBook(book) {
   const bookNode = document.createElement('div');
   bookNode.classList.add('book'); // add book class to our node
+  bookNode.setAttribute('data-uuid', book.uuid); // add uuid on our node
 
-  bookNode.innerHTML = book.info();
-  libraryNode.appendChild(bookNode);
+  const title = document.createElement('h2');
+  title.classList.add('book-title');
+  title.textContent = book.title;
+
+  const author = document.createElement('div');
+  author.classList.add('author');
+  author.textContent = `by ${book.author}`;
+
+  const pages = document.createElement('div');
+  pages.classList.add('pages');
+  pages.textContent = `${book.pages} pages`;
+
+  const read = book.read ? 'read' : 'unread';
+  const readButton = document.createElement('button');
+  readButton.classList.add(read);
+  readButton.textContent = read;
+
+  const deleteButton = document.createElement('button');
+  deleteButton.classList.add('delete-button');
+  deleteButton.textContent = 'delete';
+
+  bookNode.append(title, author, pages, readButton, deleteButton);
+  libraryNode.append(bookNode);
 }
 // TODO: For delete confirmation look up window.prompt()
 
