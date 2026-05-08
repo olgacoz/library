@@ -17,9 +17,9 @@ newBookForm.addEventListener('submit', (e) => {
   }
   e.preventDefault(); // We don't want to submit this form since we don't have a server
 
-  const trimmedTitle = title.value.trim();
-  const trimmedAuthor = author.value.trim();
-  if (trimmedTitle === '' || trimmedAuthor === '') {
+  const sanitizedTitle = title.value.trim().replace(/ +/g, ' ');
+  const sanitizedAuthor = author.value.trim().replace(/ +/g, ' ');
+  if (sanitizedTitle === '' || sanitizedAuthor === '') {
     alert('Please enter valid input');
     return;
   }
@@ -27,8 +27,8 @@ newBookForm.addEventListener('submit', (e) => {
   // Check if book already exists
   for (const book of myLibrary) {
     if (
-      book.title.toLowerCase() === trimmedTitle.toLowerCase() &&
-      book.author.toLowerCase() === trimmedAuthor.toLowerCase()
+      book.title.toLowerCase() === sanitizedTitle.toLowerCase() &&
+      book.author.toLowerCase() === sanitizedAuthor.toLowerCase()
     ) {
       alert('Book already exists in library');
       return; // returns from for loop not function
@@ -36,7 +36,7 @@ newBookForm.addEventListener('submit', (e) => {
   }
 
   // Add book to library and display the recently added book on page
-  addBookToLibrary(trimmedTitle, trimmedAuthor, pages.value, read.checked);  // we should use read.checked to return boolean value
+  addBookToLibrary(sanitizedTitle, sanitizedAuthor, pages.value, read.checked);  // we should use read.checked to return boolean value
   displayBook(myLibrary[myLibrary.length - 1]);
 
   newBookForm.reset();
