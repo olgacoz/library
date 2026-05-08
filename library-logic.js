@@ -31,7 +31,7 @@ newBookForm.addEventListener('submit', (e) => {
       book.author.toLowerCase() === trimmedAuthor.toLowerCase()
     ) {
       alert('Book already exists in library');
-      return; // returns from for loop not function
+      return; // returns from function
     }
   }
 
