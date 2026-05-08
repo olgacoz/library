@@ -17,9 +17,9 @@ newBookForm.addEventListener('submit', (e) => {
   }
   e.preventDefault(); // We don't want to submit this form since we don't have a server
 
-  const trimmedTitle = title.value.trim();
-  const trimmedAuthor = author.value.trim();
-  if (trimmedTitle === '' || trimmedAuthor === '') {
+  const sanitizedTitle = title.value.trim().replace(/ +/g, ' ');
+  const sanitizedAuthor = author.value.trim().replace(/ +/g, ' ');
+  if (sanitizedTitle === '' || sanitizedAuthor === '') {
     alert('Please enter valid input');
     return;
   }
@@ -27,8 +27,8 @@ newBookForm.addEventListener('submit', (e) => {
   // Check if book already exists
   for (const book of myLibrary) {
     if (
-      book.title.toLowerCase() === trimmedTitle.toLowerCase() &&
-      book.author.toLowerCase() === trimmedAuthor.toLowerCase()
+      book.title.toLowerCase() === sanitizedTitle.toLowerCase() &&
+      book.author.toLowerCase() === sanitizedAuthor.toLowerCase()
     ) {
       alert('Book already exists in library');
       return; // returns from function
@@ -36,7 +36,7 @@ newBookForm.addEventListener('submit', (e) => {
   }
 
   // Add book to library and display the recently added book on page
-  addBookToLibrary(trimmedTitle, trimmedAuthor, pages.value, read.checked);  // we should use read.checked to return boolean value
+  addBookToLibrary(sanitizedTitle, sanitizedAuthor, pages.value, read.checked);  // we should use read.checked to return boolean value
   displayBook(myLibrary[myLibrary.length - 1]);
 
   newBookForm.reset();
@@ -77,7 +77,7 @@ libraryNode.addEventListener('click', (e) => {
 
 function Book(title, author, pages, read) {
   if (!new.target) {
-    throw Error("You must use the 'new' operator to call the constructor");
+    throw Error('You must use the \'new\' operator to call the constructor');
   }
 
   this.title = title;
@@ -188,14 +188,14 @@ function removeBook(bookNode, uuid) {
   }
 }
 
-addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, true);
-addBookToLibrary("1984", "George Orwell", 328, false);
-addBookToLibrary("Dune", "Frank Herbert", 412, true);
-addBookToLibrary("Atomic Habits", "James Clear", 320, true);
-addBookToLibrary("The Pragmatic Programmer", "Andrew Hunt", 352, false);
-addBookToLibrary("Clean Code", "Robert C. Martin", 464, true);
-addBookToLibrary("Eloquent JavaScript", "Marijn Haverbeke", 472, true);
-addBookToLibrary("Kürk Mantolu Madonna", "Sabahattin Ali", 160, false);
-addBookToLibrary("Abasıyanık", "Sait Faik", 136, true);
+addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 295, true);
+addBookToLibrary('1984', 'George Orwell', 328, false);
+addBookToLibrary('Dune', 'Frank Herbert', 412, true);
+addBookToLibrary('Atomic Habits', 'James Clear', 320, true);
+addBookToLibrary('The Pragmatic Programmer', 'Andrew Hunt', 352, false);
+addBookToLibrary('Clean Code', 'Robert C. Martin', 464, true);
+addBookToLibrary('Eloquent JavaScript', 'Marijn Haverbeke', 472, true);
+addBookToLibrary('Kürk Mantolu Madonna', 'Sabahattin Ali', 160, false);
+addBookToLibrary('Abasıyanık', 'Sait Faik', 136, true);
 
 displayBooks();
