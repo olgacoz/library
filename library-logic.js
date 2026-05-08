@@ -77,7 +77,7 @@ libraryNode.addEventListener('click', (e) => {
 
 function Book(title, author, pages, read) {
   if (!new.target) {
-    throw Error("You must use the 'new' operator to call the constructor");
+    throw Error('You must use the \'new\' operator to call the constructor');
   }
 
   this.title = title;
@@ -188,14 +188,14 @@ function removeBook(bookNode, uuid) {
   }
 }
 
-addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, true);
-addBookToLibrary("1984", "George Orwell", 328, false);
-addBookToLibrary("Dune", "Frank Herbert", 412, true);
-addBookToLibrary("Atomic Habits", "James Clear", 320, true);
-addBookToLibrary("The Pragmatic Programmer", "Andrew Hunt", 352, false);
-addBookToLibrary("Clean Code", "Robert C. Martin", 464, true);
-addBookToLibrary("Eloquent JavaScript", "Marijn Haverbeke", 472, true);
-addBookToLibrary("Kürk Mantolu Madonna", "Sabahattin Ali", 160, false);
-addBookToLibrary("Abasıyanık", "Sait Faik", 136, true);
+addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 295, true);
+addBookToLibrary('1984', 'George Orwell', 328, false);
+addBookToLibrary('Dune', 'Frank Herbert', 412, true);
+addBookToLibrary('Atomic Habits', 'James Clear', 320, true);
+addBookToLibrary('The Pragmatic Programmer', 'Andrew Hunt', 352, false);
+addBookToLibrary('Clean Code', 'Robert C. Martin', 464, true);
+addBookToLibrary('Eloquent JavaScript', 'Marijn Haverbeke', 472, true);
+addBookToLibrary('Kürk Mantolu Madonna', 'Sabahattin Ali', 160, false);
+addBookToLibrary('Abasıyanık', 'Sait Faik', 136, true);
 
 displayBooks();
