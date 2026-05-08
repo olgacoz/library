@@ -104,6 +104,10 @@ div.book-control-buttons {
   gap: 5px;
 }
 
+#new-book-form div:nth-child(-n+3) input {
+  padding: 0 2px;
+}
+
 #new-book-form button {
   padding: 2px 5px;
   margin-right: 5px;
