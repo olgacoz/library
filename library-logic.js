@@ -75,24 +75,42 @@ libraryNode.addEventListener('click', (e) => {
   }
 });
 
-function Book(title, author, pages, read) {
-  if (!new.target) {
-    throw Error('You must use the \'new\' operator to call the constructor');
+// function Book(title, author, pages, read) {
+//   if (!new.target) {
+//     throw Error('You must use the \'new\' operator to call the constructor');
+//   }
+
+//   this.title = title;
+//   this.author = author;
+//   this.pages = pages;
+//   this.read = read;
+//   this.uuid = crypto.randomUUID();
+// }
+
+// Book.prototype.info = function () {
+//   return `${this.title} by ${this.author}, ${this.pages} pages, ${read}`;
+// }
+
+// Book.prototype.toggleReadStatus = function () {
+//   this.read = !this.read;
+// }
+
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+    this.uuid = crypto.randomUUID();
   }
 
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-  this.uuid = crypto.randomUUID();
-}
+  info() {
+    return `${this.title} by ${this.author}, ${this.pages} pages, ${read}`;
+  }
 
-Book.prototype.info = function () {
-  return `${this.title} by ${this.author}, ${this.pages} pages, ${read}`;
-}
-
-Book.prototype.toggleReadStatus = function () {
-  this.read = !this.read;
+  toggleReadStatus() {
+    this.read = !this.read;
+  }
 }
 
 function addBookToLibrary(title, author, pages, read) {
