@@ -44,7 +44,7 @@ newBookForm.addEventListener('submit', (e) => {
 });
 
 libraryNode.addEventListener('click', (e) => {
-  targetClassList = e.target.classList;
+  const targetClassList = e.target.classList;
 
   if (targetClassList.contains('delete-button')) { // delete button clicked
     const confirmed = window.confirm('Do you want to remove this book?');
@@ -105,7 +105,7 @@ class Book {
   }
 
   info() {
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${read}`;
+    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
   }
 
   toggleReadStatus() {
